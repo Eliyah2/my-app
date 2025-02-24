@@ -1,0 +1,14 @@
+# Python-specific
+__pycache__/
+*.pyc
+.env
+
+# Node.js-specific
+node_modules/
+npm-debug.log
+
+# Visual Studio Code-specific
+.vscode/
+
+# Mac-specific
+.DS_Store
