@@ -1,0 +1,145 @@
+<?php
+/*********************************************************************
+* Titel: De Verloren Schat
+* Auteur: [eliyah impelmans]
+* Datum: 2024-04-08
+* Beschrijving: Tekstgebaseerd avontuur spel in de jungle
+**********************************************************************/
+
+$schat =  "      ___________\n"                        .
+          "     '._==_==_=_.'\n"                      .
+          "     .-\\:      /-.\n"                     .
+          "    | (|:.     |) |\n"                     .
+          "     '-|:.     |-' \n"                     .
+          "       \\::.    /\n"                      .
+          "        '::. .'\n"                        .
+          "          ) (\n"                          .
+          "        _.' '._\n"                        .
+          "       `\"\"\"\"\"\"`\n";
+
+function asciiIntro() {
+    echo "Welkom bij: De Verloren Schat!\n\n";
+    echo "      _______\n";
+    echo "     //  $$ /|\n";
+    echo "    // $$  / |\n";
+    echo "   //_____/  |\n";
+    echo "  |          |\n";
+    echo "  |   __   |\n";
+    echo "  |  |__|  |\n";
+    echo "  |________|\n\n";
+}
+
+function startSpel() {
+    global $schat;
+
+    asciiIntro();
+
+    echo "Je staat aan de rand van een jungle. Er zijn twee paden voor je:\n";
+    echo "1. Een pad vol doornstruiken.\n";
+    echo "2. Een duidelijk en druk bewandeld pad.\n";
+    echo "Maak je keuze (1 of 2): ";
+    $keuze = readline();
+
+    if ($keuze == "1") {
+        echo "\nJe worstelt door de doorns, je raakt gewond maar komt bij een verborgen grot.\n";
+        echo "Wat wil je doen?\n";
+        echo "1. De grot binnen gaan.\n";
+        echo "2. Verder wandelen.\n";
+        echo "Maak je keuze (1 of 2): ";
+        $keuze = readline();
+
+        if ($keuze == "1") {
+            echo "\nBinnen in de grot zie je twee tunnels.\n";
+            echo "1. Neem de rechter tunnel.\n";
+            echo "2. Neem de linker tunnel.\n";
+            echo "Maak je keuze (1 of 2): ";
+            $keuze = readline();
+
+            if ($keuze == "2") {
+                echo "\nJe komt in een kamer met een mysterieus raadsel op de muur.\n";
+                echo "Raadsel: Ik ben licht als een veer, maar zelfs de sterkste man kan me niet vasthouden. Wat ben ik?\n";
+                echo "Je antwoord: ";
+                $antwoord = strtolower(trim(readline()));
+
+                if ($antwoord == "adem") {
+                    echo "\nJe hebt het raadsel goed opgelost!\n";
+                    echo "Voor je ligt nog een deur. Openen? (ja/nee): ";
+                    $antwoord = strtolower(trim(readline()));
+                    if ($antwoord == "ja") {
+                        echo "\nAchter de deur zie je drie kisten.\n";
+                        echo "1. Een gouden kist\n";
+                        echo "2. Een houten kist\n";
+                        echo "3. Een stenen kist\n";
+                        echo "Welke kies je? (1, 2 of 3): ";
+                        $kist = readline();
+
+                        if ($kist == "2") {
+                            echo "\nJe opent de houten kist...\n\n";
+                            echo $schat;
+                            echo "\n🎉 GEFELICITEERD, JE HEBT GEWONNEN! 🎉\n";
+                        } else {
+                            echo "\nDe kist is leeg of een val... Je ontsnapt maar zonder schat. EINDE.\n";
+                        }
+                    } else {
+                        echo "\nJe loopt terug en verlaat de grot. Geen schat voor jou vandaag. EINDE.\n";
+                    }
+                } else {
+                    echo "\nFout antwoord. De deur sluit... Je zit opgesloten. EINDE.\n";
+                }
+            } else {
+                echo "\nEen val wordt geactiveerd en je valt in een diepe kuil... EINDE.\n";
+            }
+
+        } else {
+            echo "\nJe wandelt verder, maar raakt verdwaald... 😞\n";
+            echo "Helaas geen schat gevonden. EINDE.\n";
+        }
+
+    } elseif ($keuze == "2") {
+        echo "\nJe volgt het duidelijke pad en komt bij een wilde rivier.\n";
+        echo "Wat wil je doen?\n";
+        echo "1. Proberen over te steken.\n";
+        echo "2. Zoek een brug stroomafwaarts.\n";
+        echo "Maak je keuze (1 of 2): ";
+        $keuze = readline();
+
+        if ($keuze == "1") {
+            echo "\nJe wordt meegesleurd door de sterke stroming... 🌊\n";
+            echo "Helaas. EINDE.\n";
+        } else {
+            echo "\nJe vindt een brug en steekt veilig over. Aan de overkant ligt een tempel.\n";
+            echo "Wil je de tempel betreden? (ja/nee): ";
+            $antwoord = strtolower(trim(readline()));
+
+            if ($antwoord == "ja") {
+                echo "\nIn de tempel zie je een altaar en een mysterieuze inscriptie.\n";
+                echo "Wil je het altaar aanraken? (ja/nee): ";
+                $antwoord = strtolower(trim(readline()));
+
+                if ($antwoord == "ja") {
+                    echo "\nHet altaar schuift open en onthult een geheime trap naar beneden.\n";
+                    echo "Ben je dapper genoeg om af te dalen? (ja/nee): ";
+                    $antwoord = strtolower(trim(readline()));
+
+                    if ($antwoord == "ja") {
+                        echo "\nBeneden vind je de kist van de schat...\n\n";
+                        echo $schat;
+                        echo "\n🎉 GEFELICITEERD, JE HEBT DE SCHAT GEVONDEN! 🎉\n";
+                    } else {
+                        echo "\nJe besluit terug te keren. Geen schat, maar wel veilig thuis. EINDE.\n";
+                    }
+                } else {
+                    echo "\nNiets gebeurt. Je verlaat de tempel zonder schat. EINDE.\n";
+                }
+            } else {
+                echo "\nJe besluit om het lot niet te tarten. Je loopt terug naar huis. EINDE.\n";
+            }
+        }
+
+    } else {
+        echo "\nOngeldige invoer. Start het spel opnieuw.\n";
+    }
+}
+
+startSpel();
+?>
